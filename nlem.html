@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230f3a6b%27/%3E%3Cg transform=%27rotate(-45 32 32)%27%3E%3Crect x=%2714%27 y=%2724%27 width=%2736%27 height=%2716%27 rx=%278%27 fill=%27%23fff%27/%3E%3Crect x=%2732%27 y=%2724%27 width=%2718%27 height=%2716%27 rx=%270%27 fill=%27%2380b3ef%27/%3E%3Crect x=%2742%27 y=%2724%27 width=%278%27 height=%2716%27 rx=%274%27 fill=%27%2380b3ef%27/%3E%3C/g%3E%3C/svg%3E">
+<meta name="description" content="บัญชียาหลักแห่งชาติ พ.ศ. 2569 พร้อมรหัส TPU / GPU และราคากลางยา">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ค้นหายา NLEM 2569 × TMT">
+<meta property="og:description" content="บัญชียาหลักแห่งชาติ พ.ศ. 2569 พร้อมรหัส TPU / GPU และราคากลางยา">
+<meta property="og:image" content="https://satar-th.github.io/-nlem2569/og.png">
+<meta property="og:url" content="https://satar-th.github.io/-nlem2569/nlem.html">
+<meta name="twitter:card" content="summary_large_image">
 <title>ค้นหายา NLEM 2569 · TMT</title>
 <style>
 :root{
@@ -116,7 +124,7 @@ body.locked{overflow:hidden}
 <button id="nok" disabled>ตกลง</button>
 </div></div>
 <div class="top"><div class="in">
-  <a href="./" style="display:inline-block;color:#cfdcf0;font-size:13px;text-decoration:none;margin-bottom:6px">← หน้าหลัก</a>
+  <a href="./" class="homelink" style="display:inline-block;color:#cfdcf0;font-size:13px;text-decoration:none;margin-bottom:6px">← หน้าหลัก</a>
   <h1>ค้นหายา บัญชียาหลักแห่งชาติ 2569 × รหัสยามาตรฐาน TMT</h1>
   <p>บัญชียาหลักแห่งชาติ พ.ศ. 2569 ฉบับเต็ม พร้อมรหัส TPU / GPU (TMT 2 พ.ย. 2569) และราคากลางยา 2568 · ใช้งานได้ออฟไลน์</p>
   <div class="stats" id="stats"></div>
@@ -254,5 +262,6 @@ var bg=[].slice.call(document.body.children).filter(function(e){return e!==n&&e.
 c.addEventListener("change",function(){b.disabled=!c.checked});
 b.addEventListener("click",function(){if(!c.checked)return;n.remove();document.body.classList.remove("locked");bg.forEach(function(e){e.removeAttribute("inert");e.removeAttribute("aria-hidden")});var q=document.querySelector("input");if(q)q.focus();});})();
 </script>
+<script>if(location.protocol==="file:"){var h=document.querySelector(".homelink");if(h)h.remove();}</script>
 </body>
 </html>

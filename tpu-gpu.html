@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230f3a6b%27/%3E%3Cg transform=%27rotate(-45 32 32)%27%3E%3Crect x=%2714%27 y=%2724%27 width=%2736%27 height=%2716%27 rx=%278%27 fill=%27%23fff%27/%3E%3Crect x=%2732%27 y=%2724%27 width=%2718%27 height=%2716%27 rx=%270%27 fill=%27%2380b3ef%27/%3E%3Crect x=%2742%27 y=%2724%27 width=%278%27 height=%2716%27 rx=%274%27 fill=%27%2380b3ef%27/%3E%3C/g%3E%3C/svg%3E">
+<meta name="description" content="ค้นหาและจับคู่รหัสยา TPU กับ GPU ครั้งละหลายรายการ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ระบบจับคู่ยา TPU → GPU">
+<meta property="og:description" content="ค้นหาและจับคู่รหัสยา TPU กับ GPU ครั้งละหลายรายการ">
+<meta property="og:image" content="https://satar-th.github.io/-nlem2569/og.png">
+<meta property="og:url" content="https://satar-th.github.io/-nlem2569/tpu-gpu.html">
+<meta name="twitter:card" content="summary_large_image">
 <title>ระบบจับคู่ยา TPU → GPU (ฉบับออฟไลน์)</title>
 <script>
 // ฉบับออฟไลน์: ใช้ข้อมูลที่ฝังไว้ในไฟล์ · ไม่ส่งข้อมูลออกไปไหน
@@ -69,7 +77,7 @@ window.google = { script: { run: (function () {
 <div id="loading"><div class="spin"></div><div>กำลังโหลดข้อมูลยา… (ประมาณ 3–5 วินาที)</div></div>
 
 <header>
-  <a href="./" style="display:block;width:100%;color:inherit;opacity:.8;font-size:13px;text-decoration:none;margin-bottom:4px">← หน้าหลัก</a>
+  <a href="./" class="homelink" style="display:block;width:100%;color:inherit;opacity:.8;font-size:13px;text-decoration:none;margin-bottom:4px">← หน้าหลัก</a>
   <h1>💊 ระบบจับคู่ยา TPU → GPU <span style="font-size:14px;background:#fff;color:#0b5d3b;border-radius:12px;padding:2px 10px;vertical-align:middle">ฉบับออฟไลน์</span></h1>
   <span class="ver" id="ver">📅 ข้อมูล TMT ณ …</span>
   <label class="unit" style="display:none">🏥 หน่วยงาน <input id="unit" placeholder="เช่น ห้องยา OPD" maxlength="80"></label>
@@ -264,5 +272,6 @@ function load() {
 load();
 </script>
 
+<script>if(location.protocol==="file:"){var h=document.querySelector(".homelink");if(h)h.remove();}</script>
 </body>
 </html>
