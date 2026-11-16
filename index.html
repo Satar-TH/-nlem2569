@@ -38,37 +38,77 @@ main{flex:1;width:100%;max-width:960px;margin:-56px auto 0;padding:0 16px 40px}
 .go{font-size:14px;font-weight:700;color:var(--accent)}
 .dl{grid-column:1/-1;justify-self:start;font-size:13.5px;color:var(--accent);text-decoration:none;padding:4px 2px}
 .dl:hover{text-decoration:underline}
+.ver{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:12.5px;font-weight:600;color:#0f3a6b;background:#eef3fa;border-radius:999px;padding:3px 10px}
+.ver::before{content:"";width:7px;height:7px;border-radius:50%;background:#2e8b57}
 footer{text-align:center;color:var(--muted);font-size:12.5px;padding:18px}
+</style>
+<style id="dmsn-css">
+.dmsn{background:#0b2f57;color:#fff;font:14px/1.4 "Sarabun","Noto Sans Thai","IBM Plex Sans Thai","Leelawadee UI",Tahoma,sans-serif;position:relative;z-index:30}
+.dmsn-in{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:12px;min-height:46px}
+.dmsn a{text-decoration:none}
+.dmsn-brand{color:#fff;font-weight:700;white-space:nowrap;display:flex;align-items:center;gap:8px;font-size:15px}
+.dmsn-brand i{font-style:normal;display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.14)}
+.dmsn-links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.dmsn-links::-webkit-scrollbar{display:none}
+.dmsn-links a{color:#cfdcf0;padding:6px 12px;border-radius:999px;white-space:nowrap}
+.dmsn-links a:hover{background:rgba(255,255,255,.12);color:#fff}
+.dmsn-links a.on{background:#fff;color:#0b2f57;font-weight:700}
+.dmsn-foot{text-align:center;color:#5b6578;font:12.5px/1.6 "Sarabun","Noto Sans Thai","IBM Plex Sans Thai",Tahoma,sans-serif;padding:14px 16px 22px;border-top:1px solid #e2e6ec;margin-top:8px}
+.dmsn-foot b{color:#172033}
+@media(max-width:640px){.dmsn-brand span{display:none}.dmsn-in{gap:8px;padding:0 10px}.dmsn-links a{padding:6px 10px;font-size:13px}}
 </style>
 </head>
 <body>
+<nav class="dmsn" aria-label="เมนูหลัก"><div class="dmsn-in"><a class="dmsn-brand" href="./" title="หน้าหลัก"><i>💊</i><span>รวมเครื่องมือข้อมูลยา</span></a><div class="dmsn-links"><a href="nlem-search.html">ค้นหายา NLEM</a><a href="report-5files.html">รายงาน 5 แฟ้ม</a><a href="tpu-gpu-match.html">จับคู่ TPU → GPU</a></div></div></nav>
 <div class="top"><div class="in">
   <h1>รวมเครื่องมือข้อมูลยา</h1>
-  <p>เลือกงานที่ต้องการใช้งาน</p>
+  <p>กองบริหารการสาธารณสุข (กบรส.) สำนักงานปลัดกระทรวงสาธารณสุข<br>เลือกงานที่ต้องการใช้งาน</p>
 </div></div>
 <main>
   <div class="grid">
     <a class="card" href="nlem-search.html">
       <div class="ic blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
       <h2>ค้นหายา NLEM 2569</h2>
+      <span class="ver" data-src="nlem-search.html" data-pat="meta">TMT 2 พ.ย. 2569</span>
       <p>บัญชียาหลักแห่งชาติ พ.ศ. 2569 พร้อมรหัส TPU / GPU (TMT) และราคากลางยา ค้นหาได้ทั้งชื่อยา ชื่อการค้า ผู้ผลิต และรหัส</p>
       <span class="go">เปิดใช้งาน →</span>
     </a>
     <a class="card" href="report-5files.html">
       <div class="ic teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
       <h2>รายงานการส่งข้อมูลยา 5 แฟ้ม</h2>
+      <span class="ver" data-src="report-5files.html" data-pat="asof">ข้อมูล ณ 30 ต.ค. 69</span>
       <p>สรุปการส่งข้อมูล 5 แฟ้ม ภาพรวมประเทศและรายเขต พร้อมรายชื่อโรงพยาบาลที่ยังไม่ส่ง ดาวน์โหลดเป็น Excel / PowerPoint ได้</p>
       <span class="go">เปิดใช้งาน →</span>
     </a>
     <a class="card" href="tpu-gpu-match.html">
       <div class="ic green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg></div>
       <h2>ระบบจับคู่ยา TPU → GPU</h2>
-      <p>ค้นหายาด้วยชื่อสามัญ ชื่อการค้า หรือรหัส และวางรหัส TPU ครั้งละหลายรายการเพื่อจับคู่กับ GPU ดาวน์โหลดผลเป็น Excel ได้ (ข้อมูล TMT ณ 2 พ.ย. 2569)</p>
+      <span class="ver" data-src="tpu-gpu-match.html" data-pat="meta">TMT 2 พ.ย. 2569</span>
+      <p>ค้นหายาด้วยชื่อสามัญ ชื่อการค้า หรือรหัส และวางรหัส TPU ครั้งละหลายรายการเพื่อจับคู่กับ GPU พร้อมบอกว่ายาอยู่ในบัญชียาหลักหรือไม่ ดาวน์โหลดผลเป็น Excel ได้</p>
       <span class="go">เปิดใช้งาน →</span>
     </a>
     <a class="dl" href="tpu-gpu-match.html" download="ระบบจับคู่ยา_TPU-GPU_ออฟไลน์.html">⬇ ดาวน์โหลดระบบจับคู่ยา TPU → GPU ไปใช้แบบออฟไลน์ (ไฟล์เดียว เปิดได้โดยไม่ต้องต่อเน็ต)</a>
   </div>
 </main>
 <footer>ข้อมูลทุกหน้าประมวลผลในเบราว์เซอร์ · โปรดตรวจสอบกับประกาศฉบับจริงก่อนนำไปใช้</footer>
+<div class="dmsn-foot">จัดทำโดย <b>กองบริหารการสาธารณสุข (กบรส.) สำนักงานปลัดกระทรวงสาธารณสุข</b> · โทร 02-590-1641</div>
+
+<script>
+(function(){
+ var P={meta:/<meta name="data-version" content="([^"]+)"/,asof:/"months":\[[^\]]*\],"asof":"([^"]+)"/};
+ var fmt={meta:function(v){return v},asof:function(v){return "ข้อมูล ณ "+v}};
+ document.querySelectorAll(".ver[data-src]").forEach(function(el){
+  var re=P[el.dataset.pat];if(!re||!window.fetch||!window.TextDecoder)return;
+  fetch(el.dataset.src,{cache:"no-cache"}).then(function(r){
+   if(!r.ok||!r.body||!r.body.getReader)return;
+   var rd=r.body.getReader(),dec=new TextDecoder(),buf="",seen=0;
+   function step(){return rd.read().then(function(x){
+     if(x.done)return;seen+=x.value.length;buf=(buf+dec.decode(x.value,{stream:true})).slice(-6000);
+     var m=buf.match(re);if(m){el.textContent=fmt[el.dataset.pat](m[1]);rd.cancel();return}
+     if(seen>3e6){rd.cancel();return}return step();});}
+   return step();}).catch(function(){});
+ });
+})();
+</script>
 </body>
 </html>

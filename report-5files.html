@@ -248,10 +248,26 @@ td.f{text-align:center;width:88px}
 .lowtbl td:last-child{text-align:right}
 @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2,.how{grid-template-columns:1fr}.hrow{grid-template-columns:110px 1fr}}
 </style>
+<style id="dmsn-css">
+.dmsn{background:#0b2f57;color:#fff;font:14px/1.4 "Sarabun","Noto Sans Thai","IBM Plex Sans Thai","Leelawadee UI",Tahoma,sans-serif;position:relative;z-index:30}
+.dmsn-in{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:12px;min-height:46px}
+.dmsn a{text-decoration:none}
+.dmsn-brand{color:#fff;font-weight:700;white-space:nowrap;display:flex;align-items:center;gap:8px;font-size:15px}
+.dmsn-brand i{font-style:normal;display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.14)}
+.dmsn-links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.dmsn-links::-webkit-scrollbar{display:none}
+.dmsn-links a{color:#cfdcf0;padding:6px 12px;border-radius:999px;white-space:nowrap}
+.dmsn-links a:hover{background:rgba(255,255,255,.12);color:#fff}
+.dmsn-links a.on{background:#fff;color:#0b2f57;font-weight:700}
+.dmsn-foot{text-align:center;color:#5b6578;font:12.5px/1.6 "Sarabun","Noto Sans Thai","IBM Plex Sans Thai",Tahoma,sans-serif;padding:14px 16px 22px;border-top:1px solid #e2e6ec;margin-top:8px}
+.dmsn-foot b{color:#172033}
+@media(max-width:640px){.dmsn-brand span{display:none}.dmsn-in{gap:8px;padding:0 10px}.dmsn-links a{padding:6px 10px;font-size:13px}}
+</style>
 </head>
 <body>
+<nav class="dmsn" aria-label="เมนูหลัก"><div class="dmsn-in"><a class="dmsn-brand" href="./" title="หน้าหลัก"><i>💊</i><span>รวมเครื่องมือข้อมูลยา</span></a><div class="dmsn-links"><a href="nlem-search.html">ค้นหายา NLEM</a><a href="report-5files.html" class="on" aria-current="page">รายงาน 5 แฟ้ม</a><a href="tpu-gpu-match.html">จับคู่ TPU → GPU</a></div></div></nav>
 <header>
-  <div><a href="./" class="homelink" style="display:inline-block;font-size:13px;text-decoration:none;color:inherit;opacity:.75;margin-bottom:4px">← หน้าหลัก</a><h1 id="h1t">รายงานการส่งข้อมูลยา 5 แฟ้ม</h1><div class="sub" id="fileinfo">โรงพยาบาลสังกัด สป. 904 แห่ง · 12 เขตสุขภาพ</div><div class="stats" id="stats"></div></div>
+  <div><h1 id="h1t">รายงานการส่งข้อมูลยา 5 แฟ้ม</h1><div class="sub" id="fileinfo">โรงพยาบาลสังกัด สป. 904 แห่ง · 12 เขตสุขภาพ</div><div class="stats" id="stats"></div></div>
   <div class="spacer"></div>
   <div class="hdr-right">
     <div class="hdr-btns">
@@ -864,5 +880,6 @@ async function buildPptx(only){
   return await pres.write({outputType:'arraybuffer'});
 }
 boot();refreshButtons();
-</script><script>if(location.protocol==="file:"){var h=document.querySelector(".homelink");if(h)h.remove();}</script>
+</script><div class="dmsn-foot">จัดทำโดย <b>กองบริหารการสาธารณสุข (กบรส.) สำนักงานปลัดกระทรวงสาธารณสุข</b> · โทร 02-590-1641</div>
+<script>if(location.protocol==="file:"){document.querySelectorAll(".dmsn,.homelink").forEach(function(e){e.remove()});}</script>
 </body></html>
