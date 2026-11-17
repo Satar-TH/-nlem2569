@@ -36,6 +36,7 @@ main{flex:1;width:100%;max-width:960px;margin:-56px auto 0;padding:0 16px 40px}
 .card h2{margin:0;font-size:18px}
 .card p{margin:0;color:var(--muted);font-size:14px;flex:1}
 .go{font-size:14px;font-weight:700;color:var(--accent)}
+.vidrow{grid-column:1/-1;justify-self:start}
 .dl{grid-column:1/-1;justify-self:start;font-size:13.5px;color:var(--accent);text-decoration:none;padding:4px 2px}
 .dl:hover{text-decoration:underline}
 .ver{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:12.5px;font-weight:600;color:#0f3a6b;background:#eef3fa;border-radius:999px;padding:3px 10px}
@@ -56,6 +57,17 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:18px}
 .dmsn-foot{text-align:center;color:#5b6578;font:12.5px/1.6 "Sarabun","Noto Sans Thai","IBM Plex Sans Thai",Tahoma,sans-serif;padding:14px 16px 22px;border-top:1px solid #e2e6ec;margin-top:8px}
 .dmsn-foot b{color:#172033}
 @media(max-width:640px){.dmsn-brand span{display:none}.dmsn-in{gap:8px;padding:0 10px}.dmsn-links a{padding:6px 10px;font-size:13px}}
+</style>
+<style id="vid-css">
+.vidbtn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;font:inherit;font-weight:700;font-size:14px;color:#fff;background:#c0392b;border-radius:999px;padding:8px 16px;text-decoration:none;box-shadow:0 2px 8px rgba(192,57,43,.25)}
+.vidbtn:hover{background:#a93226}
+.vidbtn small{font-weight:400;opacity:.85}
+#vidbox{position:fixed;inset:0;background:rgba(10,20,35,.82);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+#vidbox.on{display:flex}
+#vidbox .in{width:min(960px,100%);background:#000;border-radius:14px;overflow:hidden;position:relative}
+#vidbox video{display:block;width:100%;max-height:80vh;background:#000}
+#vidbox .x{position:absolute;top:8px;right:8px;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.9);font-size:20px;cursor:pointer}
+#vidbox .cap{color:#dfe7f2;font-size:13.5px;padding:8px 14px;background:#0b2f57}
 </style>
 </head>
 <body>
@@ -87,6 +99,7 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:18px}
       <p>ค้นหายาด้วยชื่อสามัญ ชื่อการค้า หรือรหัส และวางรหัส TPU ครั้งละหลายรายการเพื่อจับคู่กับ GPU พร้อมบอกว่ายาอยู่ในบัญชียาหลักหรือไม่ ดาวน์โหลดผลเป็น Excel ได้</p>
       <span class="go">เปิดใช้งาน →</span>
     </a>
+    <div class="vidrow"><button type="button" class="vidbtn" data-src="tpu-gpu-guide.mp4" data-poster="tpu-gpu-guide.jpg" data-title="วิดีโอแนะนำการใช้งาน ระบบจับคู่ยา TPU → GPU">▶ วิดีโอแนะนำการใช้งานระบบจับคู่ยา TPU → GPU <small>1:38 นาที</small></button></div>
     <a class="dl" href="tpu-gpu-match.html" download="ระบบจับคู่ยา_TPU-GPU_ออฟไลน์.html">⬇ ดาวน์โหลดระบบจับคู่ยา TPU → GPU ไปใช้แบบออฟไลน์ (ไฟล์เดียว เปิดได้โดยไม่ต้องต่อเน็ต)</a>
   </div>
 </main>
@@ -109,6 +122,15 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:18px}
    return step();}).catch(function(){});
  });
 })();
+</script>
+<div id="vidbox" role="dialog" aria-modal="true" aria-label="วิดีโอแนะนำการใช้งาน"><div class="in"><button class="x" type="button" aria-label="ปิด">✕</button><video controls preload="none" playsinline></video><div class="cap"></div></div></div>
+<script>
+(function(){var box=document.getElementById("vidbox"),v=box.querySelector("video"),cap=box.querySelector(".cap");
+if(location.protocol==="file:"){document.querySelectorAll(".vidbtn").forEach(function(e){e.remove()});return;}
+function close(){v.pause();box.classList.remove("on");}
+document.addEventListener("click",function(e){var b=e.target.closest(".vidbtn");if(b){e.preventDefault();v.src=b.dataset.src;v.poster=b.dataset.poster||"";cap.textContent=b.dataset.title||"";box.classList.add("on");v.play().catch(function(){});return;}
+ if(e.target===box||e.target.closest("#vidbox .x"))close();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&box.classList.contains("on"))close();});})();
 </script>
 </body>
 </html>

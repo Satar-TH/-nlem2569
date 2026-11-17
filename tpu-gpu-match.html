@@ -27,7 +27,10 @@
   header .unit { margin-left:auto; display:flex; align-items:center; gap:8px; font-size:14px; }
   header .unit input { border:0; border-radius:8px; padding:7px 10px; font:inherit; width:200px; }
   main { max-width:1200px; margin:0 auto; padding:20px 16px 60px; }
-  .tabs { display:flex; gap:8px; margin-bottom:16px; }
+  .tabs { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; align-items:center; }
+  .tabs .vidbtn { margin-left:auto; flex:none; max-width:none; border:0; background:#c0392b; color:#fff; font-size:14px; padding:9px 16px; border-radius:999px; white-space:nowrap; }
+  .tabs .vidbtn:hover { background:#a93226; }
+  @media (max-width:640px) { .tabs .vidbtn { margin-left:0; width:100%; justify-content:center; order:3; } }
   .tabs button { flex:1; max-width:280px; border:2px solid var(--g); background:#fff; color:var(--g); border-radius:12px; padding:12px; font:inherit; font-weight:700; font-size:17px; cursor:pointer; }
   .tabs button.on { background:var(--g); color:#fff; }
   .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px; margin-bottom:16px; }
@@ -88,6 +91,17 @@
 .dmsn-foot b{color:#172033}
 @media(max-width:640px){.dmsn-brand span{display:none}.dmsn-in{gap:8px;padding:0 10px}.dmsn-links a{padding:6px 10px;font-size:13px}}
 </style>
+<style id="vid-css">
+.vidbtn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;font:inherit;font-weight:700;font-size:14px;color:#fff;background:#c0392b;border-radius:999px;padding:8px 16px;text-decoration:none;box-shadow:0 2px 8px rgba(192,57,43,.25)}
+.vidbtn:hover{background:#a93226}
+.vidbtn small{font-weight:400;opacity:.85}
+#vidbox{position:fixed;inset:0;background:rgba(10,20,35,.82);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+#vidbox.on{display:flex}
+#vidbox .in{width:min(960px,100%);background:#000;border-radius:14px;overflow:hidden;position:relative}
+#vidbox video{display:block;width:100%;max-height:80vh;background:#000}
+#vidbox .x{position:absolute;top:8px;right:8px;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.9);font-size:20px;cursor:pointer}
+#vidbox .cap{color:#dfe7f2;font-size:13.5px;padding:8px 14px;background:#0b2f57}
+</style>
 </head>
 <body class="locked">
 <nav class="dmsn" aria-label="เมนูหลัก"><div class="dmsn-in"><a class="dmsn-brand" href="./" title="หน้าหลัก"><i>💊</i><span>รวมเครื่องมือข้อมูลยา</span></a><div class="dmsn-links"><a href="nlem-search.html">ค้นหายา NLEM</a><a href="report-5files.html">รายงาน 5 แฟ้ม</a><a href="tpu-gpu-match.html" class="on" aria-current="page">จับคู่ TPU → GPU</a></div></div></nav>
@@ -111,6 +125,7 @@
   <div class="tabs">
     <button id="tA" class="on" onclick="tab('A')">🔎 ค้นหายา</button>
     <button id="tB" onclick="tab('B')">🔗 จับคู่หลายตัว</button>
+    <button type="button" class="vidbtn" data-src="tpu-gpu-guide.mp4" data-poster="tpu-gpu-guide.jpg" data-title="วิดีโอแนะนำการใช้งาน ระบบจับคู่ยา TPU → GPU">▶ วิดีโอแนะนำการใช้งาน <small>1:38 นาที</small></button>
   </div>
 
   <section id="A">
@@ -303,5 +318,14 @@ b.addEventListener("click",function(){if(!c.checked)return;n.remove();document.b
 </script>
 <div class="dmsn-foot">จัดทำโดย <b>กองบริหารการสาธารณสุข (กบรส.) สำนักงานปลัดกระทรวงสาธารณสุข</b> · โทร 02-590-1641</div>
 <script>if(location.protocol==="file:"){document.querySelectorAll(".dmsn,.homelink").forEach(function(e){e.remove()});}</script>
+<div id="vidbox" role="dialog" aria-modal="true" aria-label="วิดีโอแนะนำการใช้งาน"><div class="in"><button class="x" type="button" aria-label="ปิด">✕</button><video controls preload="none" playsinline></video><div class="cap"></div></div></div>
+<script>
+(function(){var box=document.getElementById("vidbox"),v=box.querySelector("video"),cap=box.querySelector(".cap");
+if(location.protocol==="file:"){document.querySelectorAll(".vidbtn").forEach(function(e){e.remove()});return;}
+function close(){v.pause();box.classList.remove("on");}
+document.addEventListener("click",function(e){var b=e.target.closest(".vidbtn");if(b){e.preventDefault();v.src=b.dataset.src;v.poster=b.dataset.poster||"";cap.textContent=b.dataset.title||"";box.classList.add("on");v.play().catch(function(){});return;}
+ if(e.target===box||e.target.closest("#vidbox .x"))close();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&box.classList.contains("on"))close();});})();
+</script>
 </body>
 </html>
