@@ -88,7 +88,7 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:18px}
     <a class="card" href="report-5files.html">
       <div class="ic teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
       <h2>รายงานการส่งข้อมูลยา 5 แฟ้ม</h2>
-      <span class="ver" data-src="report-5files.html" data-pat="asof">ข้อมูล ณ 30 ต.ค. 69</span>
+      <span class="ver" data-src="report-5files.html" data-pat="asof">ข้อมูล ณ 17 พ.ย. 69</span>
       <p>สรุปการส่งข้อมูล 5 แฟ้ม ภาพรวมประเทศและรายเขต พร้อมรายชื่อโรงพยาบาลที่ยังไม่ส่ง ดาวน์โหลดเป็น Excel / PowerPoint ได้</p>
       <span class="go">เปิดใช้งาน →</span>
     </a>
@@ -116,8 +116,9 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:18px}
    if(!r.ok||!r.body||!r.body.getReader)return;
    var rd=r.body.getReader(),dec=new TextDecoder(),buf="",seen=0;
    function step(){return rd.read().then(function(x){
-     if(x.done)return;seen+=x.value.length;buf=(buf+dec.decode(x.value,{stream:true})).slice(-6000);
+     if(x.done)return;seen+=x.value.length;buf+=dec.decode(x.value,{stream:true});
      var m=buf.match(re);if(m){el.textContent=fmt[el.dataset.pat](m[1]);rd.cancel();return}
+     buf=buf.slice(-2000);
      if(seen>3e6){rd.cancel();return}return step();});}
    return step();}).catch(function(){});
  });
