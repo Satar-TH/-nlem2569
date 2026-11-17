@@ -18,63 +18,72 @@
 <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 <script>if (!window.XLSX) document.write('<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"><\/script>');</script>
 <style>
-  :root { --g:#0b5d3b; --g2:#e8f3ec; --ink:#1f2a24; --mute:#5f6b64; --line:#dfe5e0; --y:#ffe066; --o:#e37400; --red:#c5221f; --redbg:#fce8e6; }
+  :root { --brand:#0f3a6b; --accent:#1f62b8; --accentbg:#e8f0fb; --g:#0d6b4a; --g2:#e3f3ea; --ink:#172033; --mute:#5b6578; --line:#e2e6ec; --soft:#f8f9fb; --red:#b3261e; --redbg:#fde7e5; --r:14px; }
   * { box-sizing:border-box; }
-  body { margin:0; font-family:'Sarabun',Tahoma,sans-serif; color:var(--ink); background:#f5f7f4; font-size:16px; }
-  header { background:var(--g); color:#fff; padding:18px 24px; display:flex; flex-wrap:wrap; align-items:center; gap:12px 24px; }
-  header h1 { margin:0; font-size:24px; }
-  header .ver { background:rgba(255,255,255,.15); border-radius:20px; padding:4px 14px; font-size:14px; }
+  body { margin:0; font:15px/1.55 "Sarabun","Noto Sans Thai","IBM Plex Sans Thai","Leelawadee UI",Tahoma,system-ui,sans-serif; color:var(--ink); background:#f4f6f9; -webkit-font-smoothing:antialiased; }
+  header { background:linear-gradient(135deg,#0f3a6b,#16508f); color:#fff; padding:22px max(16px,calc((100% - 1200px)/2 + 16px)) 24px; display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; }
+  header h1 { margin:0; font-size:22px; letter-spacing:.2px; display:flex; align-items:center; flex-wrap:wrap; gap:10px; }
+  header h1 .ic { display:inline-grid; place-items:center; width:34px; height:34px; border-radius:10px; background:var(--g2); color:var(--g); }
+  header h1 .ic svg { width:20px; height:20px; }
+  header .ver { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:5px 12px; font-size:13px; color:#e6eefa; }
   header .unit { margin-left:auto; display:flex; align-items:center; gap:8px; font-size:14px; }
   header .unit input { border:0; border-radius:8px; padding:7px 10px; font:inherit; width:200px; }
   main { max-width:1200px; margin:0 auto; padding:20px 16px 60px; }
   .tabs { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; align-items:center; }
-  .tabs .vidbtn { margin-left:auto; flex:none; max-width:none; border:0; background:#c0392b; color:#fff; font-size:14px; padding:9px 16px; border-radius:999px; white-space:nowrap; }
-  .tabs .vidbtn:hover { background:#a93226; }
+  .tabs button { flex:1; max-width:260px; border:1px solid var(--line); background:#fff; color:var(--ink); border-radius:12px; padding:11px 14px; font:inherit; font-weight:700; font-size:16px; cursor:pointer; box-shadow:0 1px 3px rgba(16,40,80,.06); }
+  .tabs button:hover { border-color:var(--accent); color:var(--accent); }
+  .tabs button.on { background:var(--accent); border-color:var(--accent); color:#fff; box-shadow:0 4px 12px rgba(31,98,184,.25); }
+  .tabs .vidbtn { margin-left:auto; flex:none; max-width:none; border:0; background:#c0392b; color:#fff; font-size:14px; padding:9px 16px; border-radius:999px; white-space:nowrap; box-shadow:0 2px 8px rgba(192,57,43,.25); }
+  .tabs .vidbtn:hover { background:#a93226; color:#fff; }
   @media (max-width:640px) { .tabs .vidbtn { margin-left:0; width:100%; justify-content:center; order:3; } }
-  .tabs button { flex:1; max-width:280px; border:2px solid var(--g); background:#fff; color:var(--g); border-radius:12px; padding:12px; font:inherit; font-weight:700; font-size:17px; cursor:pointer; }
-  .tabs button.on { background:var(--g); color:#fff; }
-  .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px; margin-bottom:16px; }
-  .big { width:100%; font:inherit; font-size:20px; font-weight:600; padding:14px 16px; border:3px solid var(--o); background:var(--y); border-radius:10px; outline:none; }
-  .small { width:100%; font:inherit; padding:9px 12px; border:1px solid var(--line); border-radius:8px; margin-top:10px; background:#fffbe6; }
-  .hint { color:var(--mute); font-size:14px; margin:8px 2px 0; }
-  .count { font-weight:700; color:var(--g); margin:4px 0 10px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:18px; margin-bottom:16px; box-shadow:0 6px 24px rgba(16,40,80,.06); }
+  .big { width:100%; font:inherit; font-size:18px; padding:14px 16px; border:2px solid #1d5fa8; background:#fff; border-radius:12px; outline:none; box-shadow:0 2px 6px rgba(29,95,168,.12); transition:.15s; }
+  .big:focus, textarea:focus { border-color:#164c88; box-shadow:0 0 0 4px #1f62b833; }
+  .small { width:100%; font:inherit; padding:9px 12px; border:1px solid var(--line); border-radius:10px; margin-top:10px; background:var(--soft); outline:none; }
+  .small:focus { border-color:var(--accent); background:#fff; }
+  .hint { color:var(--mute); font-size:13.5px; margin:8px 2px 0; }
+  .count { font-weight:700; color:var(--brand); margin:2px 0 10px; }
   .cols { display:grid; grid-template-columns:1fr 1.4fr; gap:16px; }
   table { width:100%; border-collapse:collapse; font-size:14px; }
-  th { background:var(--g); color:#fff; text-align:left; padding:8px; position:sticky; top:0; white-space:nowrap; }
+  th { background:#eef3fa; color:var(--brand); text-align:left; padding:9px 8px; position:sticky; top:0; white-space:nowrap; font-weight:700; border-bottom:1px solid #d6e0ee; }
   td { border-bottom:1px solid var(--line); padding:7px 8px; vertical-align:top; }
-  td.code { font-family:Consolas,monospace; white-space:nowrap; }
-  tr.miss td { background:var(--redbg); color:var(--red); }
+  tbody tr:hover td { background:#f7faff; }
+  td.code { font-family:Consolas,"SF Mono",monospace; white-space:nowrap; color:var(--accent); }
+  tr.miss td, tbody tr.miss:hover td { background:var(--redbg); color:var(--red); }
   .scroll { max-height:520px; overflow:auto; border:1px solid var(--line); border-radius:10px; }
-  textarea { width:100%; min-height:160px; font:15px Consolas,monospace; padding:12px; border:3px solid var(--o); background:var(--y); border-radius:10px; outline:none; }
+  textarea { width:100%; min-height:160px; font:15px Consolas,"SF Mono",monospace; padding:12px; border:2px solid #1d5fa8; background:#fff; border-radius:12px; outline:none; box-shadow:0 2px 6px rgba(29,95,168,.12); }
   .row { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:12px 0; }
-  .btn { border:0; border-radius:10px; padding:12px 20px; font:inherit; font-weight:700; font-size:16px; cursor:pointer; }
-  .btn.go { background:var(--g); color:#fff; }
-  .btn.dl { background:#0b7d4f; color:#fff; font-size:18px; padding:14px 26px; }
-  .btn.ghost { background:#fff; border:2px solid var(--line); color:var(--ink); }
+  .btn { border:0; border-radius:10px; padding:11px 20px; font:inherit; font-weight:700; font-size:15px; cursor:pointer; }
+  .btn.go { background:var(--accent); color:#fff; }
+  .btn.go:hover { background:#174f96; }
+  .btn.dl { background:var(--g); color:#fff; font-size:16px; padding:12px 22px; }
+  .btn.dl:hover { background:#0a5a3e; }
+  .btn.ghost { background:#fff; border:1px solid var(--line); color:var(--ink); }
+  .btn.ghost:hover { border-color:var(--accent); color:var(--accent); }
   .btn:disabled { opacity:.4; cursor:default; }
-  .stat { display:flex; gap:10px; flex-wrap:wrap; }
-  .stat span { background:var(--g2); border-radius:20px; padding:5px 14px; font-weight:700; }
+  .stat { display:flex; gap:8px; flex-wrap:wrap; }
+  .stat span { background:var(--accentbg); color:var(--brand); border-radius:999px; padding:5px 14px; font-weight:700; font-size:14px; }
   .stat span.bad { background:var(--redbg); color:var(--red); }
-  #loading { position:fixed; inset:0; background:rgba(245,247,244,.96); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; z-index:9; font-size:18px; }
-  .spin { width:46px; height:46px; border:5px solid var(--g2); border-top-color:var(--g); border-radius:50%; animation:s 1s linear infinite; }
+  #loading { position:fixed; inset:0; background:rgba(244,246,249,.96); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; z-index:9; font-size:17px; color:var(--brand); }
+  .spin { width:46px; height:46px; border:5px solid var(--accentbg); border-top-color:var(--accent); border-radius:50%; animation:s 1s linear infinite; }
   @keyframes s { to { transform:rotate(360deg); } }
   .toast { position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:var(--ink); color:#fff; padding:12px 20px; border-radius:10px; display:none; z-index:10; }
-  footer { text-align:center; color:var(--mute); font-size:14px; padding:10px; }
-  .tag.nl { background:#e7f5ec; color:#0b5d3b; font-weight:700; }
-  .stat span.nl { background:#e7f5ec; color:#0b5d3b; }
-  td.nlc { font-size:13px; color:#0b5d3b; min-width:220px; }
+  footer { text-align:center; color:var(--mute); font-size:13px; padding:10px 16px; }
+  .tag.nl { background:var(--g2); color:var(--g); font-weight:700; }
+  .stat span.nl { background:var(--g2); color:var(--g); }
+  td.nlc { font-size:13px; color:var(--g); min-width:220px; }
   .muted { color:var(--mute); }
-  .tag { display:inline-block; background:#e8f0fe; color:#1a73e8; border-radius:10px; padding:1px 8px; font-size:12px; margin-left:4px; }
+  .tag { display:inline-block; background:var(--accentbg); color:var(--accent); border-radius:10px; padding:1px 8px; font-size:12px; margin-left:4px; }
   #rB td:last-child { white-space:nowrap; }
   @media (max-width:760px) { #res table { min-width:980px; } .scroll { max-height:none; } }
   .hide { display:none; }
-  @media (max-width:760px) { .cols { grid-template-columns:1fr; } header .unit { margin-left:0; width:100%; } header .unit input { flex:1; } }
-#notice{position:fixed;inset:0;z-index:9999;background:rgba(10,40,25,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px}
+  @media (max-width:760px) { .cols { grid-template-columns:1fr; } header .unit { margin-left:0; width:100%; } header .unit input { flex:1; } header h1 { font-size:20px; } }
+#notice{position:fixed;inset:0;z-index:9999;background:rgba(15,30,55,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px}
 #notice .box{background:#fff;max-width:540px;width:100%;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.25);padding:26px 26px 20px}
-#notice h2{margin:0 0 12px;font-size:19px;color:#0b5d3b}#notice p{margin:0 0 10px;line-height:1.7;font-size:15px;color:#222}
-#notice .warn{color:#9a3412;font-weight:600}#notice label{display:flex;gap:8px;align-items:center;margin:16px 0;font-size:15px;cursor:pointer}
-#notice input{width:18px;height:18px}#notice button{width:100%;padding:11px;border:0;border-radius:10px;background:#0b5d3b;color:#fff;font-size:16px;font-weight:600;cursor:pointer}
-#notice button:disabled{background:#b8c4bd;cursor:not-allowed}body.locked{overflow:hidden}
+#notice h2{margin:0 0 12px;font-size:19px;color:#0f3a6b}#notice p{margin:0 0 10px;line-height:1.7;font-size:15px;color:#222}
+#notice .warn{color:#b3261e;font-weight:600}#notice label{display:flex;gap:8px;align-items:center;margin:16px 0;font-size:15px;cursor:pointer}
+#notice input{width:18px;height:18px}#notice button{width:100%;padding:11px;border:0;border-radius:10px;background:#1f62b8;color:#fff;font-size:16px;font-weight:600;cursor:pointer}
+#notice button:disabled{background:#b8c4d3;cursor:not-allowed}body.locked{overflow:hidden}
 </style>
 <style id="dmsn-css">
 .dmsn{background:#0b2f57;color:#fff;font:14px/1.4 "Sarabun","Noto Sans Thai","IBM Plex Sans Thai","Leelawadee UI",Tahoma,sans-serif;position:relative;z-index:30}
@@ -116,7 +125,7 @@
 <div id="loading"><div class="spin"></div><div>กำลังโหลดข้อมูลยา… (ประมาณ 3–5 วินาที)</div></div>
 
 <header>
-  <h1>💊 ระบบจับคู่ยา TPU → GPU <span style="font-size:14px;background:#fff;color:#0b5d3b;border-radius:12px;padding:2px 10px;vertical-align:middle">TMT 2 พ.ย. 2569</span></h1>
+  <h1><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg></span>ระบบจับคู่ยา TPU → GPU</h1>
   <span class="ver" id="ver">📅 ข้อมูล TMT ณ …</span>
   <label class="unit" style="display:none">🏥 หน่วยงาน <input id="unit" placeholder="เช่น ห้องยา OPD" maxlength="80"></label>
 </header>
@@ -130,7 +139,7 @@
 
   <section id="A">
     <div class="card">
-      <input id="q" class="big" placeholder="👉 พิมพ์ชื่อสามัญ ชื่อการค้า หรือรหัส TPU / GPU" autocomplete="off">
+      <input id="q" class="big" placeholder="พิมพ์ชื่อสามัญ ชื่อการค้า หรือรหัส TPU / GPU" autocomplete="off">
       <input id="q2" class="small" placeholder="คำที่ 2 (ไม่ต้องใส่ก็ได้) เช่น 10 mg หรือ tablet" autocomplete="off">
       <p class="hint">พิมพ์อย่างน้อย 2 ตัวอักษร · ผลขึ้นทันที · แสดงสูงสุด 200 รายการต่อฝั่ง</p>
     </div>
@@ -144,7 +153,7 @@
 
   <section id="B" class="hide">
     <div class="card">
-      <textarea id="codes" placeholder="👉 วางรหัส TPU ตรงนี้ (คัดลอกจาก Excel / HIS แล้วกด Ctrl+V) · บรรทัดละ 1 รหัส · สูงสุด 2,000 รหัส"></textarea>
+      <textarea id="codes" placeholder="วางรหัส TPU ตรงนี้ (คัดลอกจาก Excel / HIS แล้วกด Ctrl+V) · บรรทัดละ 1 รหัส · สูงสุด 2,000 รหัส"></textarea>
       <div class="row">
         <button class="btn go" onclick="match()">🔗 จับคู่</button>
         <button class="btn ghost" onclick="clearB()">🧹 ล้างข้อมูล</button>
@@ -157,7 +166,7 @@
         <button class="btn ghost" onclick="copyTable()">📋 คัดลอกตาราง</button>
         <span class="hint">แถวสีแดง = ไม่พบ ให้ตรวจรหัสอีกครั้ง · คอลัมน์บัญชียาหลัก “—” = ยังไม่พบการจับคู่กับรายการในบัญชี (ตรวจซ้ำได้ในหน้าค้นหายา NLEM)</span>
       </div>
-      <p class="hint hide" id="textNote" style="background:#fef3d6;color:#7a4800;border-radius:8px;padding:8px 12px">💡 ช่องนี้ใช้กับ<b>รหัส TPU</b> · ถ้าต้องการหายาด้วย<b>ชื่อยา</b> ให้ใช้แท็บ <b>🔎 ค้นหายา</b></p>
+      <p class="hint hide" id="textNote" style="background:#e8f0fb;color:#0f3a6b;border-radius:10px;padding:8px 12px">💡 ช่องนี้ใช้กับ<b>รหัส TPU</b> · ถ้าต้องการหายาด้วย<b>ชื่อยา</b> ให้ใช้แท็บ <b>🔎 ค้นหายา</b></p>
       <div class="scroll"><table><thead><tr><th>#</th><th>รหัส TPU</th><th>ชื่อยา TPU</th><th>รหัส GPU</th><th>ชื่อยา GPU</th><th>บัญชียาหลัก 2569</th><th>สถานะ</th></tr></thead><tbody id="rB"></tbody></table></div>
     </div>
   </section>
